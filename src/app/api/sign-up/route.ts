@@ -82,9 +82,9 @@ export async function POST(request: Request) {
       { status: 201 },
     );
   } catch (error) {
-    console.error("Error registering user", error);
+    console.error("Error registering user internal", error);
     return Response.json(
-      { success: false, message: "Error registering user" },
+      { success: false, message: "DBError registering user" },
       { status: 500 },
     );
   }
