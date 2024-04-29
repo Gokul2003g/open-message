@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { useDebounceValue } from "usehooks-ts";
+import { useDebounceCallback } from "usehooks-ts";
 import { useToast } from "@/components/ui/use-toast";
 import { useRouter } from "next/navigation";
 import { signUpSchema } from "@/schemas/signUpSchema";
@@ -29,7 +29,7 @@ const Page = () => {
   const [isCheckingUsername, setIsCheckingUsername] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const debouncedUsername = useDebounceValue(username, 300);
+  const debounced = useDebounceCallback(setUsername, 500);
 
   const { toast } = useToast();
   const router = useRouter();
@@ -44,15 +44,17 @@ const Page = () => {
   });
 
   useEffect(() => {
+    console.log("getting fired multiple times");
     const checkUsernameUnique = async () => {
-      if (debouncedUsername) {
+      if (username) {
         setIsCheckingUsername(true);
         setUsernameMessage("");
 
         try {
-          const response = await axios.get(
-            `/api/check-username-unique?username=${debouncedUsername}`,
+          const response = await axios.get<ApiResponse>(
+            `/api/check-username-unique?username=${username}`,
           );
+
           setUsernameMessage(response.data.message);
         } catch (error) {
           const axiosError = error as AxiosError<ApiResponse>;
@@ -66,7 +68,7 @@ const Page = () => {
     };
 
     checkUsernameUnique();
-  }, [debouncedUsername]);
+  }, [username]);
 
   const onSubmit = async (data: z.infer<typeof signUpSchema>) => {
     setIsSubmitting(true);
@@ -120,14 +122,20 @@ const Page = () => {
                     <FormLabel>Username</FormLabel>
                     <FormControl>
                       <Input
-                        placeholder="username"
+                        placeholder="John Doe"
                         {...field}
                         onChange={(e) => {
                           field.onChange(e);
-                          setUsername(e.target.value);
+                          debounced(e.target.value);
                         }}
                       />
                     </FormControl>
+                    {isCheckingUsername && <Loader2 className="animate-spin" />}
+                    <p
+                      className={`text-sm ${usernameMessage === "Username available" ? "text-green-500" : "text-red-500"}`}
+                    >
+                      {usernameMessage}
+                    </p>
                     <FormDescription>Enter your username</FormDescription>
                     <FormMessage />
                   </FormItem>
@@ -140,7 +148,7 @@ const Page = () => {
                   <FormItem>
                     <FormLabel>Email</FormLabel>
                     <FormControl>
-                      <Input placeholder="example@example.com" {...field} />
+                      <Input placeholder="johndoe@example.com" {...field} />
                     </FormControl>
                     <FormDescription>Enter your email</FormDescription>
                     <FormMessage />
@@ -156,7 +164,7 @@ const Page = () => {
                     <FormControl>
                       <Input
                         type="password"
-                        placeholder="password"
+                        placeholder="********"
                         {...field}
                       />
                     </FormControl>

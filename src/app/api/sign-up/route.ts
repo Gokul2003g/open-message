@@ -5,6 +5,7 @@ import bcrypt from "bcryptjs";
 
 export async function POST(request: Request) {
   await dbConnect();
+  console.log("Because of this mostly");
   try {
     const { username, email, password } = await request.json();
 

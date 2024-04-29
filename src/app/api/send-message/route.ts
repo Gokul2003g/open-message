@@ -4,6 +4,7 @@ import { Message } from "@/model/User.model";
 
 export async function POST(request: Request) {
   await dbConnect();
+  console.log("Because of this4");
 
   const { username, content } = await request.json();
 

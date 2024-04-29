@@ -6,6 +6,7 @@ import { z } from "zod";
 
 export async function POST(request: Request) {
   await dbConnect();
+  console.log("Because of this3");
 
   try {
     const { username, code } = await request.json();

@@ -6,6 +6,7 @@ import mongoose from "mongoose";
 
 export async function POST(request: Request) {
   await dbConnect();
+  console.log("Because of this1");
 
   const session = await getServerSession(authOptions);
   const user = session?.user;
