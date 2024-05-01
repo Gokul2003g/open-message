@@ -47,6 +47,12 @@ importers:
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
+      embla-carousel-autoplay:
+        specifier: ^8.0.2
+        version: 8.0.2(embla-carousel@8.0.2)
+      embla-carousel-react:
+        specifier: ^8.0.2
+        version: 8.0.2(react@18.2.0)
       lucide-react:
         specifier: ^0.373.0
         version: 0.373.0(react@18.2.0)
@@ -1816,6 +1822,24 @@ packages:
 
   electron-to-chromium@1.4.731:
     resolution: {integrity: sha512-+TqVfZjpRz2V/5SPpmJxq9qK620SC5SqCnxQIOi7i/U08ZDcTpKbT7Xjj9FU5CbXTMUb4fywbIr8C7cGv4hcjw==}
+
+  embla-carousel-autoplay@8.0.2:
+    resolution: {integrity: sha512-31lBigAkHeI4k1767uYcr9Gm2y12mzLpVsi+QRxIWQT8J4AtRoHLOhd8YJFiXf22DbI/j78+IaeJK4lZRlFxUw==}
+    peerDependencies:
+      embla-carousel: 8.0.2
+
+  embla-carousel-react@8.0.2:
+    resolution: {integrity: sha512-RHe1GKLulOW8EDN+cJgbFbVVfRXcaLT2/89dyVw3ONGgVpZjD19wB87I1LUZ1aCzOSrTccx0PFSQanK4OOfGPA==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.1 || ^18.0.0
+
+  embla-carousel-reactive-utils@8.0.2:
+    resolution: {integrity: sha512-nLZqDkQdO0hvOP49/dUwjkkepMnUXgIzhyRuDjwGqswpB4Ibnc5M+w7rSQQAM+uMj0cPaXnYOTlv8XD7I/zVNw==}
+    peerDependencies:
+      embla-carousel: 8.0.2
+
+  embla-carousel@8.0.2:
+    resolution: {integrity: sha512-bogsDO8xosuh/l3PxIvA5AMl3+BnRVAse9sDW/60amzj4MbGS5re4WH5eVEXiuH8G1/3G7QUAX2QNr3Yx8z5rA==}
 
   emoji-regex@8.0.0:
     resolution: {integrity: sha512-MSjYzcWNOA0ewAHpz0MxpYFvwg6yjy1NG3xteoqz644VCo/RPgnr1/GGt+ic3iJTzQ8Eu3TdM14SawnVUmGE6A==}
@@ -5270,6 +5294,22 @@ snapshots:
       semver: 7.6.0
 
   electron-to-chromium@1.4.731: {}
+
+  embla-carousel-autoplay@8.0.2(embla-carousel@8.0.2):
+    dependencies:
+      embla-carousel: 8.0.2
+
+  embla-carousel-react@8.0.2(react@18.2.0):
+    dependencies:
+      embla-carousel: 8.0.2
+      embla-carousel-reactive-utils: 8.0.2(embla-carousel@8.0.2)
+      react: 18.2.0
+
+  embla-carousel-reactive-utils@8.0.2(embla-carousel@8.0.2):
+    dependencies:
+      embla-carousel: 8.0.2
+
+  embla-carousel@8.0.2: {}
 
   emoji-regex@8.0.0: {}
 
