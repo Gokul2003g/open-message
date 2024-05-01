@@ -97,7 +97,7 @@ const Page = () => {
       const axiosError = error as AxiosError<ApiResponse>;
       let errorMessage = axiosError.response?.data.message;
       toast({
-        title: "Signup Failed",
+        title: "Sign up Failed",
         description: errorMessage,
         variant: "destructive",
       });
@@ -183,7 +183,7 @@ const Page = () => {
                     wait{" "}
                   </>
                 ) : (
-                  "SignUp"
+                  "Sign Up"
                 )}
               </Button>
             </form>
