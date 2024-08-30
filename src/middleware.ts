@@ -23,6 +23,7 @@ export async function middleware(request: NextRequest) {
   return NextResponse.next();
 }
 
+// Checking git back-commits
 // See "Matching Paths" below to learn more
 export const config = {
   matcher: ["/dashboard/:path*", "/sign-in", "/sign-up", "/", "/verify/:path*"],
